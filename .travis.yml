@@ -5,30 +5,32 @@ dist: xenial
 notifications:
   email: false
 
-#before_install:
+before_install:
 #    - git submodule init
 #    - git submodule update
 
 script:
     - pwd
-#    - mkdir build
-#    - cd build
-#    - cmake -DBUILD_KELVIN_NODE_TESTS=ON ../
-#    - make
-#    - ctest --verbose
-#    - cpack
-#    - sudo dpkg -i *.deb
-#    - sudo systemctl start kelvin-node
-#    - sudo systemctl status kelvin-node.service
-#    - cat /etc/passwd
-#    - groups `users | awk '{print $1}'`
-#    - sudo chown `users | awk '{print $1}'` /opt/kelvin-node/var/run/node_cli.sock
-#    #Some manipulations to activate group may be required.
-#    - /opt/kelvin-node/bin/kelvin-node-tool cert create cert0 sig_tesla
-#    - /opt/kelvin-node/bin/kelvin-node-cli wallet new -w wallet0
-#    - strace /opt/kelvin-node/bin/kelvin-node-cli token_decl -net private -chain gdb token TOK1 total_supply 1000000000000000000000000 signs_total 1 signs_emission 1 certs cert0
-#    - /opt/kelvin-node/bin/kelvin-node-cli token_emit -net private -chain_emission gdb -chain_base_tx gdb -addr `/opt/kelvin-node/bin/kelvin-node-cli wallet list| grep addr | awk '{print $2}' |tr -d "\n"` -token TOK1 -certs cert0 -emission_value 123000000000000
-#    - /opt/kelvin-node/bin/kelvin-node-cli mempool_proc -net private -chain gdb
+    - git clone --recurse-submodules https://gitlab.demlabs.net/cellframe/kelvin-node
+    - cd kelvin-node
+    - mkdir build
+    - cd build
+    - cmake -DBUILD_KELVIN_NODE_TESTS=ON ../
+    - make
+    - ctest --verbose
+    - cpack
+    - sudo dpkg -i *.deb
+    - sudo systemctl start kelvin-node
+    - sudo systemctl status kelvin-node.service
+    - cat /etc/passwd
+    - groups `users | awk '{print $1}'`
+    - sudo chown `users | awk '{print $1}'` /opt/kelvin-node/var/run/node_cli.sock
+    #Some manipulations to activate group may be required.
+    - /opt/kelvin-node/bin/kelvin-node-tool cert create cert0 sig_tesla
+    - /opt/kelvin-node/bin/kelvin-node-cli wallet new -w wallet0
+    - strace /opt/kelvin-node/bin/kelvin-node-cli token_decl -net private -chain gdb token TOK1 total_supply 1000000000000000000000000 signs_total 1 signs_emission 1 certs cert0
+    - /opt/kelvin-node/bin/kelvin-node-cli token_emit -net private -chain_emission gdb -chain_base_tx gdb -addr `/opt/kelvin-node/bin/kelvin-node-cli wallet list| grep addr | awk '{print $2}' |tr -d "\n"` -token TOK1 -certs cert0 -emission_value 123000000000000
+    - /opt/kelvin-node/bin/kelvin-node-cli mempool_proc -net private -chain gdb
 
 addons:
   apt:
