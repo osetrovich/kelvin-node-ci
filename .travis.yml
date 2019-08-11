@@ -21,7 +21,8 @@ notifications:
 #    - git submodule update
 
 script:
-    - git clone --recurse-submodules --branch relocation https://gitlab.demlabs.net/cellframe/kelvin-node
+    - git clone https://gitlab.demlabs.net/cellframe/kelvin-node
+    - git submodule update --init --remote
     - cd kelvin-node
     - mkdir build
     - cd build
