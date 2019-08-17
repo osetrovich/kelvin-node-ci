@@ -31,10 +31,11 @@ script:
     - ctest
     - cpack
     - sudo dpkg -i *.deb
+    - sudo chmod 0775 /opt/kelvin-node/bin/*
     - sudo /opt/kelvin-node/bin/kelvin-node-tool cert create cert0 sig_tesla
     - sudo systemctl start kelvin-node
     - sudo systemctl status kelvin-node
-    - sudo journalctl -xe
+#    - sudo journalctl -xe
     - ls -la /opt/kelvin-node/bin
     - sudo /opt/kelvin-node/bin/kelvin-node-cli wallet new -w wallet0
     - sudo /opt/kelvin-node/bin/kelvin-node-cli token_decl -net private -chain gdb token TOK1 total_supply 1000000000000000000000000 signs_total 1 signs_emission 1 certs cert0
