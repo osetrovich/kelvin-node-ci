@@ -30,10 +30,9 @@ script:
     - make
     - ctest
     - cpack
-    - sudo rm -r /opt/kelvin-node
     - sudo dpkg -i *.deb
     - sudo /opt/kelvin-node/bin/kelvin-node-tool cert create cert0 sig_tesla
-    - sudo service kelvin-node start
+    - sudo systemctl start kelvin-node
     - sudo systemctl status kelvin-node
     - sudo journalctl -xe
     - sudo /opt/kelvin-node/bin/kelvin-node-cli wallet new -w wallet0
