@@ -22,7 +22,7 @@ notifications:
 
 script:
     - git clone https://gitlab.demlabs.net/cellframe/kelvin-node
-    - git submodule update --init --remote
+    - git submodule update --init
     - cd kelvin-node
     - mkdir build
     - cd build
