@@ -32,6 +32,7 @@ script:
     - cpack
     - sudo dpkg -i *.deb
     - sudo chmod 0775 /opt/kelvin-node/bin/*
+    - cat /etc/passwd
     - /opt/kelvin-node/bin/kelvin-node-tool cert create cert0 sig_tesla
     - sudo systemctl start kelvin-node
     - sudo systemctl status kelvin-node
